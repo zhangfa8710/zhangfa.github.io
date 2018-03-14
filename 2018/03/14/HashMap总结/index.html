@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="发的博客">
 <meta property="og:description" content="一、如何实现Map的深拷贝呢？ 使用序列化的方式来实现对象的深拷贝，但是前提是，对象必须是实现了Serializable接口才可以，Map本身没有实现 Serializable 这个接口，所以这种方式不能序列化Map，也就是不能深拷贝Map。但是HashMap是可以的，因为它实现了 Serializable. 二、HashMap实现了Cloneable接口下的clone方法，此方法的默认为一个浅拷">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-14T13:44:41.139Z">
+<meta property="og:updated_time" content="2018-03-14T13:50:23.163Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HashMap总结">
 <meta name="twitter:description" content="一、如何实现Map的深拷贝呢？ 使用序列化的方式来实现对象的深拷贝，但是前提是，对象必须是实现了Serializable接口才可以，Map本身没有实现 Serializable 这个接口，所以这种方式不能序列化Map，也就是不能深拷贝Map。但是HashMap是可以的，因为它实现了 Serializable. 二、HashMap实现了Cloneable接口下的clone方法，此方法的默认为一个浅拷">
@@ -174,47 +174,21 @@
 <p>浅克隆用HashMap 中的clone即可满足。</p>
 <p>深克隆需要序列化与反序列化实现深克隆</p>
 <pre><code>@SuppressWarnings(&quot;unchecked&quot;)
-
 public static &lt;T&gt; T clone(T obj){
-
-
-
     T clonedObj = null;
-
     try {
-
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
         ObjectOutputStream oos = new ObjectOutputStream(baos);
-
         oos.writeObject(obj);
-
         oos.close();
-
-
-
         ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-
         ObjectInputStream ois = new ObjectInputStream(bais);
-
         clonedObj = (T) ois.readObject();
-
         ois.close();
-
-
-
     }catch (Exception e){
-
         e.printStackTrace();
-
     }
-
-
-
     return clonedObj;
-
-
-
 }
 </code></pre><p>或者重现clone方法</p>
 <p>public Object clone() {<br>    //return super.clone();<br>    SpDataMap target = new SpDataMap();<br>    for(Iterator keyIt = this.keySet().iterator();keyIt.hasNext();){<br>        Object key = keyIt.next(); target.put(key,this.get(key));<br>    }<br>    return target;<br>} </p>
@@ -225,7 +199,7 @@ public static &lt;T&gt; T clone(T obj){
 
 
 
-    <a data-url="https://zhangfa8710.github.io/2018/03/14/HashMap总结/" data-id="cjer51m7i0000lw7a5hd9ky0i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://zhangfa8710.github.io/2018/03/14/HashMap总结/" data-id="cjer589zg0000qs7av45z9k5w" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
