@@ -3,20 +3,23 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签：: -博客 | 发的博客</title>
+    <title>HashMap总结 | 发的博客</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="description" content="记录生活点滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="发的博客">
-<meta property="og:url" content="https://zhangfa8710.github.io/tags/博客/index.html">
+        <meta name="keywords" content="" />
+    
+    <meta name="description" content="一、如何实现Map的深拷贝呢？ 使用序列化的方式来实现对象的深拷贝，但是前提是，对象必须是实现了Serializable接口才可以，Map本身没有实现 Serializable 这个接口，所以这种方式不能序列化Map，也就是不能深拷贝Map。但是HashMap是可以的，因为它实现了 Serializable. 二、HashMap实现了Cloneable接口下的clone方法，此方法的默认为一个浅拷">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HashMap总结">
+<meta property="og:url" content="https://zhangfa8710.github.io/2018/03/14/HashMap总结/index.html">
 <meta property="og:site_name" content="发的博客">
-<meta property="og:description" content="记录生活点滴">
+<meta property="og:description" content="一、如何实现Map的深拷贝呢？ 使用序列化的方式来实现对象的深拷贝，但是前提是，对象必须是实现了Serializable接口才可以，Map本身没有实现 Serializable 这个接口，所以这种方式不能序列化Map，也就是不能深拷贝Map。但是HashMap是可以的，因为它实现了 Serializable. 二、HashMap实现了Cloneable接口下的clone方法，此方法的默认为一个浅拷">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-14T13:44:41.139Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="发的博客">
-<meta name="twitter:description" content="记录生活点滴">
+<meta name="twitter:title" content="HashMap总结">
+<meta name="twitter:description" content="一、如何实现Map的深拷贝呢？ 使用序列化的方式来实现对象的深拷贝，但是前提是，对象必须是实现了Serializable接口才可以，Map本身没有实现 Serializable 这个接口，所以这种方式不能序列化Map，也就是不能深拷贝Map。但是HashMap是可以的，因为它实现了 Serializable. 二、HashMap实现了Cloneable接口下的clone方法，此方法的默认为一个浅拷">
     
 
     
@@ -129,73 +132,172 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-tag"></i>标签：: <em>-博客</em>
+    未分类
     </h1>
 </div>
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-HashMap总结" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2018" class="archive-year"><i class="icon fa fa-calendar-o"></i>2018</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/01/31/hello/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="https://zhangfa8710.github.io/2018/01/31/hello/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            
-            </div>
-            <div class="date"><time datetime="2018-01-31T11:15:08.000Z" itemprop="datePublished">2018-01-31</time></div>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2018/01/31/hello/">hello</a>
+        HashMap总结
         </h1>
     
 
-        <p class="article-excerpt">
-            摘要:
-        </p>
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/03/14/HashMap总结/" class="article-date">
+            <time datetime="2018-03-14T13:15:12.000Z" itemprop="datePublished">2018-03-14</time>
+        </a>
+    </div>
+
+                
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>一、如何实现Map的深拷贝呢？</p>
+<p>使用序列化的方式来实现对象的深拷贝，但是前提是，对象必须是实现了Serializable接口才可以，Map本身没有实现 Serializable 这个接口，所以这种方式不能序列化Map，也就是不能深拷贝Map。但是HashMap是可以的，因为它实现了 Serializable.</p>
+<p>二、HashMap实现了Cloneable接口下的clone方法，此方法的默认为一个浅拷贝。</p>
+<p>源码分析：</p>
+<p>1.HashMap的clone方法生成新的对象，新的对象有自己独立的存储空间。</p>
+<p>2.虽然HashMap的clone方法生成了新的对象，但新的HashMap和原来的HashMap所存储的引用类型都是指向的同一存储空间。</p>
+<p>3.新生成的HashMap中的数组属性table是开辟了新的空间的，只是table中的存储的值所指向的内存空间和原来的是一样的</p>
+<p>结论:基本类型是可以被克隆的,但引用类型只是copy地址,并没有copy这个地址指向的对象的值,这使得两个地址指向同一值,修改其中一个,当然另一个也就变了.<br>由此可见,浅克隆只适合克隆基本类型,对于引用类型就不能实现克隆了.</p>
+<p>浅克隆用HashMap 中的clone即可满足。</p>
+<p>深克隆需要序列化与反序列化实现深克隆</p>
+<pre><code>@SuppressWarnings(&quot;unchecked&quot;)
+
+public static &lt;T&gt; T clone(T obj){
+
+
+
+    T clonedObj = null;
+
+    try {
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        ObjectOutputStream oos = new ObjectOutputStream(baos);
+
+        oos.writeObject(obj);
+
+        oos.close();
+
+
+
+        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+
+        ObjectInputStream ois = new ObjectInputStream(bais);
+
+        clonedObj = (T) ois.readObject();
+
+        ois.close();
+
+
+
+    }catch (Exception e){
+
+        e.printStackTrace();
+
+    }
+
+
+
+    return clonedObj;
+
+
+
+}
+</code></pre><p>或者重现clone方法</p>
+<p>public Object clone() {<br>    //return super.clone();<br>    SpDataMap target = new SpDataMap();<br>    for(Iterator keyIt = this.keySet().iterator();keyIt.hasNext();){<br>        Object key = keyIt.next(); target.put(key,this.get(key));<br>    }<br>    return target;<br>} </p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://zhangfa8710.github.io/2018/03/14/HashMap总结/" data-id="cjer51m7i0000lw7a5hd9ky0i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
+
+    <section id="comments">
     
-        </div>
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
     
-
-
-    </div></section>
-
+    </section>
 
 
                         </div>
@@ -256,6 +358,19 @@
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/03/09/postman使用总结/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">postman使用总结</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -430,11 +545,13 @@
     var disqus_shortname = 'hueman';
     
     
+    var disqus_url = 'https://zhangfa8710.github.io/2018/03/14/HashMap总结/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
